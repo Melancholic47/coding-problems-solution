@@ -1,0 +1,29 @@
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+
+sender_email = ""
+
+password = "."
+
+server = smtplib.SMTP('smtp-mail.outlook.com', 587)
+
+server.starttls()
+
+server.login(sender_email, password)
+
+sender_email = "khalidhamza388@outlook.com"
+receiver_email = "khalidhamza388@gmail.com"
+
+subject = "First Automation"
+body = "Hello World!"
+
+message = MIMEMultipart()
+message['From'] = sender_email
+message['To'] = receiver_email
+message['Subject'] = subject
+message.attach(MIMEText(body, "plain"))
+
+server.sendmail(sender_email, receiver_email, message.as_string())
+server.quit()
+
